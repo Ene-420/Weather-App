@@ -1,6 +1,7 @@
 export class Weather {
   constructor(
     city,
+    country,
     startDate,
     endDate,
     // country,
@@ -23,11 +24,11 @@ export class Weather {
   }
 
   getStartDate() {
-    return this.getStartDate;
+    return this.startDate;
   }
 
   getEndDate() {
-    return this.getEndDate;
+    return this.endDate;
   }
   getCountry() {
     return this.country;

@@ -1,0 +1,24 @@
+
+table{
+    border: 1px solid #ff0000;
+    font-size: 1rem;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th{
+    font-size: 1.45rem;
+}
+th::first-letter{
+    text-transform: capitalize;
+}
+
+
+td{
+    font-size: 1.2rem;
+    width: 15%;
+    height: fit-content;
+    padding: 5px;
+    text-align: center;
+    border: 2px solid #cccc;
+}
