@@ -2,15 +2,29 @@ export const bodyContent = () => {
   function render() {
     const formDetails = document.createElement("form");
     const formDiv = document.createElement("div");
+    formDiv.classList.add("form-div");
     const formTextBox = document.createElement("input");
+    const submitBtn = document.createElement("button");
+    submitBtn.textContent = 'Submit'
+    submitBtn.classList.add("submit-button");
+    submitBtn.onclick = function (event) {
+      event.preventDefault();
+    };
     formTextBox.setAttribute("type", "text");
-      formTextBox.setAttribute("id", "country-field");
-      
+    formTextBox.setAttribute("placeholder", "Enter Location Here");
+    formTextBox.setAttribute("id", "country-field");
+    formDiv.appendChild(formTextBox);
+    formDiv.appendChild(createCountryDropDown());
+    formDetails.appendChild(formDiv);
+    formDetails.appendChild(createDates());
+    formDetails.appendChild(submitBtn);
+
+    return formDetails;
   }
 
   function createDates() {
     const dateDiv = document.createElement("div");
-
+    dateDiv.classList.add("date-div");
     const startDate = document.createElement("input");
     const endDate = document.createElement("input");
 
@@ -54,7 +68,7 @@ export const bodyContent = () => {
     });
     const dropDown = document.createElement("select");
     const dropDownName = document.createElement("optgroup");
-    dropDownName.label = "Select Language";
+    dropDownName.label = "Select Country";
     dropDown.appendChild(dropDownName);
 
     sortedListed.forEach((item) => {
@@ -68,4 +82,6 @@ export const bodyContent = () => {
     dropDownDiv.appendChild(dropDown);
     return dropDownDiv;
   }
+
+  return { render };
 };

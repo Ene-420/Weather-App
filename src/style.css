@@ -1,5 +1,33 @@
 
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    background: none;
+
+
+}
+
+.content{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: [start]1fr [start-end]0fr [end];
+    grid-auto-rows: auto;
+    justify-items: center;
+    align-items: center;
+
+}
+
+.content-table{
+    grid-column: start-end/end;
+}
+
+.content-form{
+    grid-column: start/start-end;
+}
 table{
+    
     border: 1px solid #ff0000;
     font-size: 1rem;
     border-collapse: collapse;
@@ -8,6 +36,7 @@ table{
 
 th{
     font-size: 1.45rem;
+    padding: 5px;
 }
 th::first-letter{
     text-transform: capitalize;
@@ -21,4 +50,48 @@ td{
     padding: 5px;
     text-align: center;
     border: 2px solid #cccc;
+}
+
+
+
+form {
+   
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.form-div, .date-div{
+    display: flex;
+    gap: 5px;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    align-self:flex-start ;
+}
+
+
+.form-div input, .form-div select, .date-div input{
+    font-size: 1.75em;
+    border-radius: 10px;
+    text-align: center;
+    padding: 8px;
+}
+
+
+.form-div select{
+    width: fit-content;
+    background-color: #efefef;
+}
+
+.submit-button{
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    background-color: cornflowerblue;
+    color: white;
+    border: 0;
+    width: fit-content;
+    
 }
