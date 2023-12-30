@@ -5,7 +5,7 @@
     list-style: none;
     box-sizing: border-box;
     background: none;
-
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -27,11 +27,11 @@
     grid-column: start/start-end;
 }
 table{
-    
+    margin: 0 auto;
     border: 1px solid #ff0000;
     font-size: 1rem;
     border-collapse: collapse;
-    width: 60%;
+    width: 80%;
 }
 
 th{
@@ -55,22 +55,27 @@ td{
 
 
 form {
-   
+    margin: 0 auto;
+    width: 80%;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 15px;
 }
 
 .form-div, .date-div{
     display: flex;
-    gap: 5px;
-    width: 80%;
+    gap: 15px;
     margin: 0 auto;
     justify-content: center;
     align-self:flex-start ;
 }
 
+.form-div{
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 .form-div input, .form-div select, .date-div input{
     font-size: 1.75em;
@@ -79,12 +84,25 @@ form {
     padding: 8px;
 }
 
-
+legend, .weather-options-div div label{
+    font-size: 1.75em;
+}
 .form-div select{
     width: fit-content;
     background-color: #efefef;
 }
 
+.weather-options-div{
+    display: flex;
+    flex-wrap: wrap;
+    gap:8px;
+}
+
+
+.weather-options-div div{
+    display: flex;
+    gap: 5px;
+}
 .submit-button{
     padding: 10px 22px;
     border-radius: 10px;

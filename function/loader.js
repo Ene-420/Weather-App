@@ -5,7 +5,7 @@ export const bodyContent = () => {
     formDiv.classList.add("form-div");
     const formTextBox = document.createElement("input");
     const submitBtn = document.createElement("button");
-    submitBtn.textContent = 'Submit'
+    submitBtn.textContent = "Submit";
     submitBtn.classList.add("submit-button");
     submitBtn.onclick = function (event) {
       event.preventDefault();
@@ -17,6 +17,7 @@ export const bodyContent = () => {
     formDiv.appendChild(createCountryDropDown());
     formDetails.appendChild(formDiv);
     formDetails.appendChild(createDates());
+    formDetails.appendChild(createWeatherOptions());
     formDetails.appendChild(submitBtn);
 
     return formDetails;
@@ -81,6 +82,81 @@ export const bodyContent = () => {
 
     dropDownDiv.appendChild(dropDown);
     return dropDownDiv;
+  }
+
+  function createWeatherOptions() {
+    const weatherHeader = document.createElement("legend");
+    weatherHeader.textContent = "Choose the Weather Details:";
+
+    const weatherOptions = document.createElement("div");
+
+    const weatherOptionsDiv = document.createElement('div')
+    weatherOptionsDiv.classList.add('weather-options-div')
+
+    weatherOptions.appendChild(weatherHeader);
+    const defaultWeatherOptions = [
+      "address",
+      "temp",
+      "tempmin",
+      "tempmax",
+      "conditions",
+      "description",
+    ];
+
+    defaultWeatherOptions.forEach((item) => {
+
+      const div = document.createElement('div')
+      const optionsLabel = document.createElement("label");
+
+      optionsLabel.setAttribute("for", item);
+      const optionInput = document.createElement("input");
+      optionInput.setAttribute("type", "checkbox");
+      optionInput.setAttribute("name", "weather-options");
+      optionInput.setAttribute("value", `${item}`);
+      optionInput.checked = true;
+      //optionsLabel.appendChild(optionInput);
+      optionsLabel.textContent = capitalizeFirstLetter(item);
+
+      div.appendChild(optionInput);
+      div.appendChild(optionsLabel)
+
+      weatherOptionsDiv.appendChild(div)
+    });
+    const weatherOptionsOther = [
+      "feelslikemax",
+      "feelslikemin",
+      "windgust",
+      "windspeed",
+      "winddir",
+    ];
+
+    weatherOptionsOther.forEach((item) => {
+      const optionsLabel = document.createElement("label");
+      const div = document.createElement("div");
+      optionsLabel.setAttribute("for", item);
+      const optionInput = document.createElement("input");
+      optionInput.setAttribute("type", "checkbox");
+      optionInput.setAttribute("name", "weather-options");
+      optionInput.setAttribute("value", `${item}`);
+
+      //optionsLabel.appendChild(optionInput);
+      optionsLabel.textContent = capitalizeFirstLetter(item);
+
+      div.appendChild(optionInput);
+      div.appendChild(optionsLabel);
+
+      weatherOptionsDiv.appendChild(div)
+    });
+
+    weatherOptions.appendChild(weatherOptionsDiv)
+
+    return weatherOptions;
+  }
+
+  // function create
+
+  function capitalizeFirstLetter(word) {
+    return word.replace(`${word[0]}`, `${word[0].toUpperCase()}`);
   }
 
   return { render };

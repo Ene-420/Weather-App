@@ -5,7 +5,9 @@ import { table } from "../function/makeTable";
 import { bodyContent } from "../function/loader";
 
 const body = document.querySelector("body");
-body.classList.add("content");
+const content = document.createElement('div')
+
+content.classList.add("content");
 const contentBody = document.querySelector(".content");
 
 const contentForm = document.createElement("div");
@@ -37,17 +39,18 @@ const tableBody = table().createTable(tableData.data);
 contentTable.appendChild(tableBody);
 contentForm.appendChild(bodyContent().render());
 //body.appendChild(tableBody);
-body.appendChild(contentForm);
+content.appendChild(contentForm)
+body.appendChild(content);
 
 const submitBtn = document.querySelector(".submit-button");
 
 submitBtn.onclick = function (event) {
   event.preventDefault()
   displayTable();
-  body.appendChild(contentTable);
+  content.appendChild(contentTable);
 };
 
 function displayTable() {
-  contentBody.style.gridTemplateColumns = "[start]1fr[start-end] 3fr [end]";
+  content.style.gridTemplateColumns = "[start]1fr[start-end] 3fr [end]";
 }
 //console.log(tableData.data)
