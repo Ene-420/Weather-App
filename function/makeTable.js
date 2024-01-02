@@ -63,8 +63,8 @@ export const table = () => {
         table.appendChild(tableBody)
 
         return table;
-  }
-
+    }
+    
     return {
         parseCSV,
         createTable

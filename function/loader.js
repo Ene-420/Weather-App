@@ -39,7 +39,7 @@ export const bodyContent = () => {
     new Date().toISOString().substring(0, 10);
 
     endDate.setAttribute("type", "date");
-    endDate.setAttribute("name", "start-date");
+    endDate.setAttribute("name", "end-date");
     startDate.onchange = function () {
       endDate.setAttribute("min", startDate.value);
     };
@@ -60,6 +60,7 @@ export const bodyContent = () => {
       { country: "Germany", code: "DE" },
       { country: "United States of America", code: "US" },
       { country: "South Africa", code: "ZA" },
+      { country: "None", code: "None"},
     ];
 
     const sortedListed = countryCode.sort((a, b) => {
@@ -76,6 +77,9 @@ export const bodyContent = () => {
       const dropdownItem = document.createElement("option");
       dropdownItem.value = item.code;
       dropdownItem.textContent = item.country;
+      if (item.country === 'None') {
+        dropdownItem.selected = true
+      }
 
       dropDown.appendChild(dropdownItem);
     });
@@ -117,6 +121,7 @@ export const bodyContent = () => {
       //optionsLabel.appendChild(optionInput);
       optionsLabel.textContent = capitalizeFirstLetter(item);
 
+      optionsLabel.onclick = selectItem
       div.appendChild(optionInput);
       div.appendChild(optionsLabel)
 
@@ -142,6 +147,7 @@ export const bodyContent = () => {
       //optionsLabel.appendChild(optionInput);
       optionsLabel.textContent = capitalizeFirstLetter(item);
 
+      optionsLabel.onclick = selectItem
       div.appendChild(optionInput);
       div.appendChild(optionsLabel);
 
@@ -157,6 +163,17 @@ export const bodyContent = () => {
 
   function capitalizeFirstLetter(word) {
     return word.replace(`${word[0]}`, `${word[0].toUpperCase()}`);
+  }
+
+  function selectItem(event) {
+    let siblingCheckBox = event.target.previousElementSibling
+
+    if (siblingCheckBox.checked) {
+      siblingCheckBox.checked = false;
+    }
+    else {
+      siblingCheckBox.checked = true
+    }
   }
 
   return { render };

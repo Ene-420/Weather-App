@@ -5,7 +5,7 @@ import { table } from "../function/makeTable";
 import { bodyContent } from "../function/loader";
 
 const body = document.querySelector("body");
-const content = document.createElement('div')
+const content = document.createElement("div");
 
 content.classList.add("content");
 const contentBody = document.querySelector(".content");
@@ -15,7 +15,6 @@ const contentTable = document.createElement("div");
 
 contentTable.classList.add("content-table");
 contentForm.classList.add("content-form");
-
 
 const info = new Weather("hull", "uk", "2023-12-24", "2023-12-25");
 const elements = [
@@ -39,13 +38,31 @@ const tableBody = table().createTable(tableData.data);
 contentTable.appendChild(tableBody);
 contentForm.appendChild(bodyContent().render());
 //body.appendChild(tableBody);
-content.appendChild(contentForm)
+content.appendChild(contentForm);
 body.appendChild(content);
 
 const submitBtn = document.querySelector(".submit-button");
+const countryNameField = document.querySelector("#country-field");
+const countryOption = document.querySelector("select");
+const datesOptions = document.querySelectorAll('input[type ="date"]');
+const weatherOptions = document.querySelectorAll('input[name ="weather-options"]:checked');
 
 submitBtn.onclick = function (event) {
-  event.preventDefault()
+  let weatherValues = []
+  let dateValues = []
+
+  datesOptions.forEach(item => {
+    dateValues.push(item.value)
+  })
+
+  weatherOptions.forEach(item => {
+    weatherValues.push(item.value)
+  })
+  console.log(countryNameField.value)
+  console.log(countryOption.value);
+  console.log(dateValues);
+  console.log(weatherValues);
+  event.preventDefault();
   displayTable();
   content.appendChild(contentTable);
 };
