@@ -11,7 +11,8 @@
 
 .content{
     height: 100vh;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: [start]1fr [start-end]0fr [end];
     grid-auto-rows: auto;
     justify-items: center;
@@ -26,7 +27,8 @@
 }
 
 .content-form{
-    grid-column: start/start-end;
+    padding: 10px;
+    /* display: flex; */
 }
 table{
     padding: 10px;
@@ -59,10 +61,11 @@ td{
 
 form {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     display: flex;
-    flex-direction: column;
+    
     text-align: center;
+    align-content: center;
     align-items: center;
     gap: 15px;
 }
@@ -92,13 +95,19 @@ form {
     padding: 8px;
 }
 
+/* select option[disabled]:first-child {
+    display: none;
+} */
+
 legend, .weather-options-div div label{
-    font-size: 1.75em;
+    font-size: 1.55em;
 }
 .form-div select{
     width: fit-content;
     background-color: #efefef;
+    
 }
+
 
 .weather-options-div{
     display: flex;
@@ -119,5 +128,6 @@ legend, .weather-options-div div label{
     color: white;
     border: 0;
     width: fit-content;
+    height: fit-content;
     
 }

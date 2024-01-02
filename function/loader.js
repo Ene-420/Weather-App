@@ -37,8 +37,10 @@ export const bodyContent = () => {
     );
     startDate.value = new Date().toISOString().substring(0, 10);
     new Date().toISOString().substring(0, 10);
+    startDate.required = true
 
     endDate.setAttribute("type", "date");
+    endDate.setAttribute('placeholder', 'Select End Date')
     endDate.setAttribute("name", "end-date");
     startDate.onchange = function () {
       endDate.setAttribute("min", startDate.value);
@@ -60,7 +62,6 @@ export const bodyContent = () => {
       { country: "Germany", code: "DE" },
       { country: "United States of America", code: "US" },
       { country: "South Africa", code: "ZA" },
-      { country: "None", code: "None"},
     ];
 
     const sortedListed = countryCode.sort((a, b) => {
@@ -68,17 +69,21 @@ export const bodyContent = () => {
       if (a.country > b.country) return 1;
       return 0;
     });
+
+    sortedListed.unshift({ country: "Select Country", code: "" },)
+    
     const dropDown = document.createElement("select");
     const dropDownName = document.createElement("optgroup");
-    dropDownName.label = "Select Country";
-    dropDown.appendChild(dropDownName);
+    //dropDownName.label = "Select Country";
+    //dropDown.appendChild(dropDownName);
 
     sortedListed.forEach((item) => {
       const dropdownItem = document.createElement("option");
       dropdownItem.value = item.code;
       dropdownItem.textContent = item.country;
-      if (item.country === 'None') {
+      if (item.country === 'Select Country') {
         dropdownItem.selected = true
+        //dropdownItem.disabled = true
       }
 
       dropDown.appendChild(dropdownItem);
@@ -99,12 +104,12 @@ export const bodyContent = () => {
 
     weatherOptions.appendChild(weatherHeader);
     const defaultWeatherOptions = [
-      "address",
-      "temp",
-      "tempmin",
-      "tempmax",
-      "conditions",
-      "description",
+      // "address",
+      // "temp",
+      // "tempmin",
+      // "tempmax",
+      // "conditions",
+      // "description",
     ];
 
     defaultWeatherOptions.forEach((item) => {
