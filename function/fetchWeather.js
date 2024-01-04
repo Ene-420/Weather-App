@@ -22,7 +22,7 @@ export const WeatherDetails = () => {
       const url = await buildApiURL(info, elements);
       //return url;
       const response = await fetch(url);
-      if (response.status === 200) return response.text();
+      if (response.status === 200) return JSON.parse(response);
     } catch (error) {
       console.log(error);
     }

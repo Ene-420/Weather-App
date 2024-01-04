@@ -73,4 +73,5 @@ export const table = () => {
 
 const contentBody = () => {
     
+    
 }

@@ -13,7 +13,7 @@ const contentBody = document.querySelector(".content");
 const contentForm = document.createElement("div");
 const contentTable = document.createElement("div");
 
-contentTable.classList.add("content-table");
+//contentTable.classList.add("content-table");
 contentForm.classList.add("content-form");
 
 const info = new Weather("hull", "uk", "2023-12-24", "2023-12-25");
