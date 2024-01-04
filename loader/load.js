@@ -4,7 +4,7 @@ const renderHeader = () => {
 
 };
 
-const renderBody = () => {
+export const renderBody = () => {
   const bodyContent = document.createElement("main");
     bodyContent.classList("content");
     body.appendChild(bodyContent)

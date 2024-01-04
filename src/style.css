@@ -131,3 +131,32 @@ legend, .weather-options-div div label{
     height: fit-content;
     
 }
+.content-weather-info{
+    width: 100%;
+    
+}
+
+.weekday-div{
+    margin: 0 auto;
+    width: 80%;
+    gap: 5px;
+    display: grid;
+    grid-auto-columns: 1fr;
+    /* display: flex;
+    justify-content: space-evenly; */
+}
+
+.weekday-btn{
+    padding: 8px 15px;
+    grid-row: 1;
+    color:cornflowerblue ;
+    border-radius: 10px;
+    border: 2px solid cornflowerblue;
+    font-weight: 800;
+    font-size: 1.80em;
+}
+
+.active, .weekday-btn:hover{
+    color: white;
+    background-color: cornflowerblue;
+}
