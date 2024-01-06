@@ -80,8 +80,8 @@ submitBtn.onclick = function (event) {
   console.log(dateValues);
   console.log(weatherValues);
   //console.log(images['snow.png'])
-  weatherInfo(json.days)
-  daysOfWeek().createDays(json)
+  weatherInfo(json)
+  //daysOfWeek().createDays(json)
   // displayTable();
   // content.appendChild(contentTable);
 };

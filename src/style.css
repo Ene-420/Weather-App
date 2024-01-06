@@ -9,55 +9,33 @@
 
 }
 
-.content{
-    height: 100vh;
+*> button{
+    cursor: pointer;
+}
+body{
+    background-color: aqua;
     display: flex;
-    flex-direction: column;
-    grid-template-columns: [start]1fr [start-end]0fr [end];
-    grid-auto-rows: auto;
-    justify-items: center;
     align-items: center;
-
+    height: 100vh;
 }
 
-.content-table{
-    padding: 10px;
-    margin: 10px;
-    grid-column: start-end/end;
+.content{
+    height: 70%;
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center;     */
+    background-color: #efefef;
 }
 
 .content-form{
+    margin: 20px 8px;
     padding: 10px;
+    border-bottom: 5px solid #cccccc;
     /* display: flex; */
 }
-table{
-    padding: 10px;
-    margin: 0 auto;
-    border: 1px solid #ff0000;
-    font-size: 1rem;
-    border-collapse: collapse;
-    width: 80%;
-}
-
-th{
-    font-size: 1.45rem;
-    padding: 5px;
-}
-th::first-letter{
-    text-transform: capitalize;
-}
-
-
-td{
-    font-size: 1.2rem;
-    width: 15%;
-    height: fit-content;
-    padding: 5px;
-    text-align: center;
-    border: 2px solid #cccc;
-}
-
-
 
 form {
     margin: 0 auto;
@@ -133,11 +111,15 @@ legend, .weather-options-div div label{
 }
 .content-weather-info{
     width: 100%;
-    
+    /* margin: 20px 8px; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
 }
 
 .weekday-div{
-    margin: 0 auto;
+    margin: 15px auto;
     width: 80%;
     gap: 5px;
     display: grid;
@@ -159,4 +141,86 @@ legend, .weather-options-div div label{
 .active, .weekday-btn:hover{
     color: white;
     background-color: cornflowerblue;
+}
+
+.weekday-weather{
+    text-align: center;
+    font-weight: lighter;
+    margin: 5px 5px;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+.weekday-weather > h2{
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 2em;
+}
+
+.weekday-weather-content{
+    display: flex;
+    margin: 20px 0;
+    justify-content: center;
+    width: 100%;
+}
+
+.day{
+    display: none;
+    width: 80%;
+}
+.active-day{
+    display: block;
+    
+}
+.day-content, .day-content-items{
+    display: flex;
+    align-items: center;
+}
+
+.day-content{
+    justify-content: space-between;
+}
+
+.day-content h3{
+    font-size: 1.70em;
+}
+
+.day-content-items img{
+    width: 5em;
+    height: 5em;
+}
+
+.day-content-items> h1{
+    font-size: 4em;
+}
+
+.day-content-items > h1::after{
+    content: "\00B0"
+}
+
+.view-more-btn{
+    border: 0;
+    font-weight: 300
+}
+
+.view-more-btn::after{
+    content: " +";
+    font-size: larger;
+    font-weight: 600;
+}
+
+.view-more-btn:hover{
+    text-decoration: underline;
+}
+
+.day-content-extra{
+    display: none;
+}
+
+.active-extra-content{
+    display: block;
 }
