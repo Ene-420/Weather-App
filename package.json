@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@easepick/bundle": "^1.2.1",
     "papaparse": "^5.4.1"
   }
 }

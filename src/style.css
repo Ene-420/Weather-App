@@ -16,18 +16,22 @@ body{
     background-color: aqua;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100vh;
 }
 
 .content{
-    height: 70%;
-    width: 90%;
+    position: absolute;
+    height: 80%;
+    width: 80%;
     margin: 10px auto;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     /* align-items: center;     */
     background-color: #efefef;
+    border-radius: 10px;
+    border: 2px solid black;
 }
 
 .content-form{
@@ -36,7 +40,40 @@ body{
     border-bottom: 5px solid #cccccc;
     /* display: flex; */
 }
+.landing-page-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 15px;
+}
+.search-bar{
+    width: 60vh;
+    height: 8vh;
+    border-radius: 15px;
+    border: none;
+    padding:8px;
+    font-size: 1.70em;
+    text-align: center;
+    background-color: white;
+}
+.search-btn{
+    border: 0;
+    margin: 8px;
+    padding: 5px;
+    
+    font-size: 1.80em;
+    
+}
 
+.search-bar:focus{
+    border: none;
+    outline: none;
+}
+.search-bar:active{
+    border: none;
+}
 form {
     margin: 0 auto;
     width: 90%;
@@ -111,7 +148,7 @@ legend, .weather-options-div div label{
 }
 .content-weather-info{
     width: 100%;
-    /* margin: 20px 8px; */
+    margin: 0 auto; 
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -119,23 +156,24 @@ legend, .weather-options-div div label{
 }
 
 .weekday-div{
-    margin: 15px auto;
-    width: 80%;
+    /* position: relative; */
+    margin: 5px auto;
+    width: 90%;
     gap: 5px;
-    display: grid;
-    grid-auto-columns: 1fr;
-    /* display: flex;
-    justify-content: space-evenly; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .weekday-btn{
-    padding: 8px 15px;
-    grid-row: 1;
+    /* width: fit-content; */
+    padding: 5px;
+    width: 15%;
     color:cornflowerblue ;
     border-radius: 10px;
     border: 2px solid cornflowerblue;
     font-weight: 800;
-    font-size: 1.80em;
+    font-size: 1.60em;
 }
 
 .active, .weekday-btn:hover{
@@ -147,30 +185,30 @@ legend, .weather-options-div div label{
     text-align: center;
     font-weight: lighter;
     margin: 5px 5px;
-    padding: 10px;
+    padding: 5px;
     flex: 1;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
 }
 .weekday-weather > h2{
-    margin: 20px 0;
+    margin: 8px 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    font-size: 2em;
+    font-size: 1.80em;
 }
 
 .weekday-weather-content{
     display: flex;
-    margin: 20px 0;
+    margin: 8px 0;
     justify-content: center;
     width: 100%;
 }
 
 .day{
     display: none;
-    width: 80%;
+    width: 90%;
 }
 .active-day{
     display: block;
@@ -179,6 +217,7 @@ legend, .weather-options-div div label{
 .day-content, .day-content-items{
     display: flex;
     align-items: center;
+    margin: 0 auto;
 }
 
 .day-content{
@@ -189,13 +228,19 @@ legend, .weather-options-div div label{
     font-size: 1.70em;
 }
 
+.day-content> div{
+    display: flex;
+    flex-direction: column;
+    
+}
+
 .day-content-items img{
     width: 5em;
     height: 5em;
 }
 
 .day-content-items> h1{
-    font-size: 4em;
+    font-size: 3.5em;
 }
 
 .day-content-items > h1::after{
@@ -207,11 +252,11 @@ legend, .weather-options-div div label{
     font-weight: 300
 }
 
-.view-more-btn::after{
-    content: " +";
+.after, .before{
     font-size: larger;
     font-weight: 600;
 }
+
 
 .view-more-btn:hover{
     text-decoration: underline;
@@ -219,8 +264,17 @@ legend, .weather-options-div div label{
 
 .day-content-extra{
     display: none;
+    margin: 5px auto;
+    padding: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.day-content-extra h3{
+    padding:5px;
+    font-size: 1.30em;
 }
 
 .active-extra-content{
-    display: block;
+    display: flex;
 }

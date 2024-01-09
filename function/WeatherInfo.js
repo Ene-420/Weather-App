@@ -8,29 +8,46 @@ export const weatherInfo = (info) => {
   render(weekdays);
   daysOfWeek().createDays(info);
 
-
   let active = document.querySelector(".active");
   const days = document.querySelectorAll(".day");
-  let activeDay = document.querySelector('.active-day')
-  const weekdayBtn = document.querySelectorAll('.weekday-btn')
-  const dayContentExtra = activeDay.querySelector('.day-content-extra')
-  const viewMoreBtn = document.querySelector('.view-more-btn')
+  let activeDay = document.querySelector(".active-day");
+  const weekdayBtn = document.querySelectorAll(".weekday-btn");
+  let dayContentExtra = activeDay.querySelector(".day-content-extra");
+  const viewMoreBtn = document.querySelectorAll(".view-more-btn");
+  const after = document.querySelector('.after')
 
-  if (viewMoreBtn /*&& dayContentExtra*/) {
-    viewMoreBtn.onclick = function () {
-      console.log(dayContentExtra)
-      if (dayContentExtra.style.display.includes('none')) {
-        dayContentExtra.style.display = 'block' 
+  // if (viewMoreBtn /*&& dayContentExtra*/) {
+  //   viewMoreBtn.onclick = function () {
+      
+  //     // console.log(dayContentExtra)
+  //     // if (dayContentExtra.style.display.includes('none')) {
+  //     //   dayContentExtra.style.display = 'block'
+  //     // }
+  //   };
+  // }
+
+  viewMoreBtn.forEach(btn => {
+    let active = false
+    btn.onclick = function () {
+      if (!active) {
+        dayContentExtra.classList.add("active-extra-content");
+        active = true
+        after.textContent = '-'
       }
-    }
-  }
-
-  weekdayBtn.forEach(btn => {
-    btn.onclick = function (event) {
-      switchActive(event)
-      showWeatherInfo(event)
+      else {
+        dayContentExtra.classList.remove("active-extra-content");
+        active = false;
+        after.textContent = "+";
+      }
+      
     }
   })
+  weekdayBtn.forEach((btn) => {
+    btn.onclick = function (event) {
+      switchActive(event);
+      showWeatherInfo(event);
+    };
+  });
 
   function getDaysOfWeek(elements) {
     let days = [];
@@ -96,22 +113,26 @@ export const weatherInfo = (info) => {
       active.classList.remove("active");
       event.target.classList.add("active");
       active = event.target;
+      
       //showWeatherInfo(active)
     }
   }
 
-   function showWeatherInfo(element) {
-     const keyNo = element.target.dataset.key;
-     if (keyNo !== activeDay.dataset.tag) {
-       days.forEach((item) => {
-         if (item.dataset.tag === keyNo) {
-           activeDay.classList.remove('active-day')
-           item.classList.add('active-day')
-           activeDay = item
-         }
-       });
-     }
-     
-    
+  function showWeatherInfo(element) {
+    const keyNo = element.target.dataset.key;
+    if (keyNo !== activeDay.dataset.tag) {
+      days.forEach((item) => {
+        if (item.dataset.tag === keyNo) {
+          activeDay.classList.remove("active-day");
+          item.classList.add("active-day");
+          activeDay = item;
+          dayContentExtra.classList.remove("active-extra-content");
+          dayContentExtra = activeDay.querySelector(".day-content-extra");
+
+        }
+      });
+    }
   }
+  
+
 };

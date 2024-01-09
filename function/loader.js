@@ -1,3 +1,4 @@
+import { easepick } from "@easepick/bundle";
 export const bodyContent = () => {
   function render() {
     const formDetails = document.createElement("form");
@@ -25,29 +26,9 @@ export const bodyContent = () => {
 
   function createDates() {
     const dateDiv = document.createElement("div");
-    dateDiv.classList.add("date-div");
-    const startDate = document.createElement("input");
-    const endDate = document.createElement("input");
-
-    startDate.setAttribute("name", "start-date");
-    startDate.setAttribute("type", "date");
-    startDate.setAttribute(
-      "min",
-      `${new Date().toISOString().substring(0, 10)}`,
-    );
-    startDate.value = new Date().toISOString().substring(0, 10);
-    new Date().toISOString().substring(0, 10);
-    startDate.required = true
-
-    endDate.setAttribute("type", "date");
-    endDate.setAttribute('placeholder', 'Select End Date')
-    endDate.setAttribute("name", "end-date");
-    startDate.onchange = function () {
-      endDate.setAttribute("min", startDate.value);
-    };
-
-    dateDiv.appendChild(startDate);
-    dateDiv.appendChild(endDate);
+    const dateRange = document.createElement("input");
+    dateRange.setAttribute("id", "date-range");
+    dateDiv.append(dateRange);
 
     return dateDiv;
   }
@@ -70,8 +51,8 @@ export const bodyContent = () => {
       return 0;
     });
 
-    sortedListed.unshift({ country: "Select Country", code: "" },)
-    
+    sortedListed.unshift({ country: "Select Country", code: "" });
+
     const dropDown = document.createElement("select");
     const dropDownName = document.createElement("optgroup");
     //dropDownName.label = "Select Country";
@@ -81,8 +62,8 @@ export const bodyContent = () => {
       const dropdownItem = document.createElement("option");
       dropdownItem.value = item.code;
       dropdownItem.textContent = item.country;
-      if (item.country === 'Select Country') {
-        dropdownItem.selected = true
+      if (item.country === "Select Country") {
+        dropdownItem.selected = true;
         //dropdownItem.disabled = true
       }
 
@@ -99,39 +80,13 @@ export const bodyContent = () => {
 
     const weatherOptions = document.createElement("div");
 
-    const weatherOptionsDiv = document.createElement('div')
-    weatherOptionsDiv.classList.add('weather-options-div')
+    const weatherOptionsDiv = document.createElement("div");
+    weatherOptionsDiv.classList.add("weather-options-div");
 
     weatherOptions.appendChild(weatherHeader);
-    const defaultWeatherOptions = [
-      // "address",
-      // "temp",
-      // "tempmin",
-      // "tempmax",
-      // "conditions",
-      // "description",
-    ];
+   
 
-    defaultWeatherOptions.forEach((item) => {
-
-      const div = document.createElement('div')
-      const optionsLabel = document.createElement("label");
-
-      optionsLabel.setAttribute("for", item);
-      const optionInput = document.createElement("input");
-      optionInput.setAttribute("type", "checkbox");
-      optionInput.setAttribute("name", "weather-options");
-      optionInput.setAttribute("value", `${item}`);
-      optionInput.checked = true;
-      //optionsLabel.appendChild(optionInput);
-      optionsLabel.textContent = capitalizeFirstLetter(item);
-
-      optionsLabel.onclick = selectItem
-      div.appendChild(optionInput);
-      div.appendChild(optionsLabel)
-
-      weatherOptionsDiv.appendChild(div)
-    });
+    
     const weatherOptionsOther = [
       "feelslikemax",
       "feelslikemin",
@@ -152,34 +107,56 @@ export const bodyContent = () => {
       //optionsLabel.appendChild(optionInput);
       optionsLabel.textContent = capitalizeFirstLetter(item);
 
-      optionsLabel.onclick = selectItem
+      optionsLabel.onclick = selectItem;
       div.appendChild(optionInput);
       div.appendChild(optionsLabel);
 
-      weatherOptionsDiv.appendChild(div)
+      weatherOptionsDiv.appendChild(div);
     });
 
-    weatherOptions.appendChild(weatherOptionsDiv)
+    weatherOptions.appendChild(weatherOptionsDiv);
 
     return weatherOptions;
   }
 
   // function create
 
+  function dateRangePicker(element) {
+     const picker = new easepick.create({
+       element: `#${element}`,
+       css: [
+         "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
+       ],
+       plugins: ["RangePlugin", "LockPlugin"],
+       RangePlugin: {
+         tooltipNumber(num) {
+           return num - 1;
+         },
+         locale: {
+           one: "night",
+           other: "nights",
+         },
+         startDate: new Date().toISOString().substring(0, 10),
+       },
+       LockPlugin: {
+         minDate: new Date().toISOString().substring(0, 10),
+       },
+     });
+    return picker
+  }
   function capitalizeFirstLetter(word) {
     return word.replace(`${word[0]}`, `${word[0].toUpperCase()}`);
   }
 
   function selectItem(event) {
-    let siblingCheckBox = event.target.previousElementSibling
+    let siblingCheckBox = event.target.previousElementSibling;
 
     if (siblingCheckBox.checked) {
       siblingCheckBox.checked = false;
-    }
-    else {
-      siblingCheckBox.checked = true
+    } else {
+      siblingCheckBox.checked = true;
     }
   }
 
-  return { render };
+  return { render, dateRangePicker};
 };
