@@ -3,7 +3,9 @@ export const bodyContent = () => {
   function render() {
     const formDetails = document.createElement("form");
     const formDiv = document.createElement("div");
+    const formDiv_2 = document.createElement("div");
     formDiv.classList.add("form-div");
+    formDiv_2.classList.add("form-div");
     const formTextBox = document.createElement("input");
     const submitBtn = document.createElement("button");
     submitBtn.textContent = "Submit";
@@ -16,10 +18,11 @@ export const bodyContent = () => {
     formTextBox.setAttribute("id", "country-field");
     formDiv.appendChild(formTextBox);
     formDiv.appendChild(createCountryDropDown());
-    formDetails.appendChild(formDiv);
-    formDetails.appendChild(createDates());
-    formDetails.appendChild(createWeatherOptions());
-    formDetails.appendChild(submitBtn);
+    formDiv_2.append(createDates(), createWeatherOptions());
+    formDetails.append(formDiv, formDiv_2, submitBtn);
+    // formDetails.appendChild(createDates());
+    // formDetails.appendChild(createWeatherOptions());
+    // formDetails.appendChild(submitBtn);
 
     return formDetails;
   }
@@ -76,43 +79,52 @@ export const bodyContent = () => {
 
   function createWeatherOptions() {
     const weatherHeader = document.createElement("legend");
-    weatherHeader.textContent = "Choose the Weather Details:";
+    //weatherHeader.textContent = "Choose the Weather Details:";
 
     const weatherOptions = document.createElement("div");
 
     const weatherOptionsDiv = document.createElement("div");
     weatherOptionsDiv.classList.add("weather-options-div");
 
-    weatherOptions.appendChild(weatherHeader);
-   
+    //weatherOptions.appendChild(weatherHeader);
 
-    
     const weatherOptionsOther = [
-      "feelslikemax",
-      "feelslikemin",
-      "windgust",
-      "windspeed",
-      "winddir",
+      { option: "Feels Like Max", code: "feelslikemax" },
+      { option: "Feels Like Min", code: "feelslikemin" },
+      { option: "Wind Gust", code: "windgust" },
+      { option: "Wind Speed", code: "windspeed" },
+      { option: "Wind Direction", code: "winddir" },
     ];
 
+    const weatherDropDown = document.createElement("select");
+    weatherDropDown.multiple = true;
+    weatherDropDown.setAttribute("placeholder", "Select Weather Options");
+    weatherDropDown.classList.add("weather-options");
     weatherOptionsOther.forEach((item) => {
-      const optionsLabel = document.createElement("label");
-      const div = document.createElement("div");
-      optionsLabel.setAttribute("for", item);
-      const optionInput = document.createElement("input");
-      optionInput.setAttribute("type", "checkbox");
-      optionInput.setAttribute("name", "weather-options");
-      optionInput.setAttribute("value", `${item}`);
+      const weatherOptions = document.createElement("option");
+      weatherOptions.value = item.code;
+      weatherOptions.textContent = item.option;
 
-      //optionsLabel.appendChild(optionInput);
-      optionsLabel.textContent = capitalizeFirstLetter(item);
-
-      optionsLabel.onclick = selectItem;
-      div.appendChild(optionInput);
-      div.appendChild(optionsLabel);
-
-      weatherOptionsDiv.appendChild(div);
+      weatherDropDown.append(weatherOptions);
     });
+
+    // weatherOptionsOther.forEach((item) => {
+    //   const optionsLabel = document.createElement("label");
+    //   const div = document.createElement("div");
+    //   optionsLabel.setAttribute("for", item);
+    //   const optionInput = document.createElement("input");
+    //   optionInput.setAttribute("type", "checkbox");
+    //   optionInput.setAttribute("name", "weather-options");
+    //   optionInput.setAttribute("value", `${item}`);
+
+    //   //optionsLabel.appendChild(optionInput);
+    //   optionsLabel.textContent = capitalizeFirstLetter(item);
+
+    //   optionsLabel.onclick = selectItem;
+    // div.appendChild(optionInput);
+    // div.appendChild(optionsLabel);
+
+    weatherOptionsDiv.appendChild(weatherDropDown);
 
     weatherOptions.appendChild(weatherOptionsDiv);
 
@@ -122,27 +134,27 @@ export const bodyContent = () => {
   // function create
 
   function dateRangePicker(element) {
-     const picker = new easepick.create({
-       element: `#${element}`,
-       css: [
-         "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
-       ],
-       plugins: ["RangePlugin", "LockPlugin"],
-       RangePlugin: {
-         tooltipNumber(num) {
-           return num - 1;
-         },
-         locale: {
-           one: "night",
-           other: "nights",
-         },
-         startDate: new Date().toISOString().substring(0, 10),
-       },
-       LockPlugin: {
-         minDate: new Date().toISOString().substring(0, 10),
-       },
-     });
-    return picker
+    const picker = new easepick.create({
+      element: `#${element}`,
+      css: [
+        "https://cdn.jsdelivr.net/npm/@easepick/bundle@1.2.1/dist/index.css",
+      ],
+      plugins: ["RangePlugin", "LockPlugin"],
+      RangePlugin: {
+        tooltipNumber(num) {
+          return num - 1;
+        },
+        locale: {
+          one: "night",
+          other: "nights",
+        },
+        startDate: new Date().toISOString().substring(0, 10),
+      },
+      LockPlugin: {
+        minDate: new Date().toISOString().substring(0, 10),
+      },
+    });
+    return picker;
   }
   function capitalizeFirstLetter(word) {
     return word.replace(`${word[0]}`, `${word[0].toUpperCase()}`);
@@ -158,5 +170,5 @@ export const bodyContent = () => {
     }
   }
 
-  return { render, dateRangePicker};
+  return { render, dateRangePicker };
 };

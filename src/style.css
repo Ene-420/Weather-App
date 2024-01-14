@@ -85,56 +85,81 @@ form {
     gap: 15px;
 }
 
-.form-div, .date-div{
+.form-div{
     display: flex;
     gap: 15px;
     margin: 0 auto;
     justify-content: center;
-    align-self:flex-start ;
-    flex-wrap: wrap;
+    align-items: center;
+    /* flex-wrap: wrap; */
 }
 
 .form-div{
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
 }
 
 .form-div input, .form-div select{
     width: 90%;
 }
 
-.form-div input, .form-div select, .date-div input{
-    font-size: 1.65em;
+.form-div input, .form-div select, .date-div input, #date-range, .weather-options{
+    font-size: 1.65rem;
     border-radius: 10px;
     text-align: center;
     padding: 8px;
+    background-color:#ffffff ;
 }
-
+.weather-options{
+    width: fit-content;
+    padding: 8px;
+    font-size: 1.20rem;
+    text-align: center;
+    cursor: pointer;
+    
+}
+.item{
+    font-size: 1rem;
+    margin: 5px auto;
+    width: fit-content;
+    padding: 8px;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 4px;
+    text-shadow: none;
+    background-color: #f5f5f5;
+    background-image: linear-gradient(to bottom, #fff, #e6e6e6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
+}
+.weather-options input{
+    width: fit-content;
+}
 /* select option[disabled]:first-child {
     display: none;
 } */
+
 
 legend, .weather-options-div div label{
     font-size: 1.55em;
 }
 .form-div select{
     width: fit-content;
-    background-color: #efefef;
-    
 }
 
 
-.weather-options-div{
+/* .weather-options-div{
     display: flex;
     flex-wrap: wrap;
     gap:8px;
-}
+} */
 
 
-.weather-options-div div{
+/* .weather-options-div div{
     display: flex;
     gap: 5px;
-}
+} */
 .submit-button{
     padding: 10px 22px;
     border-radius: 10px;
@@ -167,13 +192,13 @@ legend, .weather-options-div div label{
 
 .weekday-btn{
     /* width: fit-content; */
-    padding: 5px;
+    padding: 5px 8px;
     width: 15%;
     color:cornflowerblue ;
     border-radius: 10px;
     border: 2px solid cornflowerblue;
     font-weight: 800;
-    font-size: 1.60em;
+    font-size: 1.60rem;
 }
 
 .active, .weekday-btn:hover{
@@ -277,4 +302,58 @@ legend, .weather-options-div div label{
 
 .active-extra-content{
     display: flex;
+}
+
+@media screen and (max-width:1000px) {
+    .content {
+            width: 90%;
+        }
+
+    .form-div{
+        flex-direction: column;
+    }
+    
+    .form-div input, .form-div select, .date-div input, #date-range {
+            font-size: 1.25em;
+            border-radius: 10px;
+            text-align: center;
+            padding: 4px;
+            background-color: #ffffff;
+        }
+    
+    legend,.weather-options-div div label {
+            font-size: 1.15em;
+    
+        }
+}
+@media screen and (max-width:768px) {
+    .content{
+        width: 90%;
+    }
+
+    .form-div{
+        flex-direction: column;
+    }
+    .form-div input,
+        .form-div select,
+        .date-div input,
+        #date-range {
+            font-size: 1.25em;
+            border-radius: 10px;
+            text-align: center;
+            padding: 4px;
+            background-color: #ffffff;
+        }
+
+    legend,.weather-options-div div label {
+        font-size: 1.15em;
+        
+    }
+    .weather-options{
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
 }

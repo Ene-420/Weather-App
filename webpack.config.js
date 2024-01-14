@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 var serialize = require("serialize-javascript");
 
 module.exports = {
@@ -25,4 +26,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+    }),
+  ],
 };
