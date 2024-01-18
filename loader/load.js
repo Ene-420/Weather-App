@@ -48,3 +48,4 @@ export const weatherPage = () => {
 
   return content
 }
+

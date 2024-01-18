@@ -79,14 +79,21 @@ export const bodyContent = () => {
 
   function createWeatherOptions() {
     const weatherHeader = document.createElement("legend");
-    //weatherHeader.textContent = "Choose the Weather Details:";
 
     const weatherOptions = document.createElement("div");
+    const span = document.createElement('span')
+    const dropDownBtn = document.createElement('button')
+    const btnIcon = document.createElement('i')
+    btnIcon.classList.add('fa-solid')
+    btnIcon.classList.add('fa-chevron-down')
+    dropDownBtn.classList.add('dropdown-btn')
+    dropDownBtn.append(btnIcon)
 
+    span.textContent = 'Select Weather Options '
+    weatherOptions.classList.add('weather-details')
     const weatherOptionsDiv = document.createElement("div");
     weatherOptionsDiv.classList.add("weather-options-div");
 
-    //weatherOptions.appendChild(weatherHeader);
 
     const weatherOptionsOther = [
       { option: "Feels Like Max", code: "feelslikemax" },
@@ -96,37 +103,28 @@ export const bodyContent = () => {
       { option: "Wind Direction", code: "winddir" },
     ];
 
-    const weatherDropDown = document.createElement("select");
-    weatherDropDown.multiple = true;
-    weatherDropDown.setAttribute("placeholder", "Select Weather Options");
-    weatherDropDown.classList.add("weather-options");
-    weatherOptionsOther.forEach((item) => {
-      const weatherOptions = document.createElement("option");
-      weatherOptions.value = item.code;
-      weatherOptions.textContent = item.option;
+    const weatherDropdown = document.createElement('div')
+    weatherDropdown.classList.add('weather-dropdown-list')
+    const weatherOptionsList = document.createElement('ul')
+    weatherOptionsOther.forEach(item => {
+      const listItem = document.createElement('li')
+      const itemCheckbox = document.createElement('input')
+      const itemLabel = document.createElement('label')
 
-      weatherDropDown.append(weatherOptions);
-    });
+      itemCheckbox.setAttribute('type', 'checkbox')
+      itemCheckbox.setAttribute('value', item.code)
+      itemCheckbox.setAttribute('name', 'weather-options')
+      itemLabel.textContent = item.option
+      itemLabel.onclick = selectItem
 
-    // weatherOptionsOther.forEach((item) => {
-    //   const optionsLabel = document.createElement("label");
-    //   const div = document.createElement("div");
-    //   optionsLabel.setAttribute("for", item);
-    //   const optionInput = document.createElement("input");
-    //   optionInput.setAttribute("type", "checkbox");
-    //   optionInput.setAttribute("name", "weather-options");
-    //   optionInput.setAttribute("value", `${item}`);
+      listItem.append(itemCheckbox, itemLabel)
+      weatherOptionsList.append(listItem)
+    })
 
-    //   //optionsLabel.appendChild(optionInput);
-    //   optionsLabel.textContent = capitalizeFirstLetter(item);
+    weatherDropdown.append(weatherOptionsList)
+    weatherOptionsDiv.append(span,dropDownBtn);
 
-    //   optionsLabel.onclick = selectItem;
-    // div.appendChild(optionInput);
-    // div.appendChild(optionsLabel);
-
-    weatherOptionsDiv.appendChild(weatherDropDown);
-
-    weatherOptions.appendChild(weatherOptionsDiv);
+    weatherOptions.append(weatherOptionsDiv, weatherDropdown);
 
     return weatherOptions;
   }

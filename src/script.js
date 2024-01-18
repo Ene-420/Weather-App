@@ -49,22 +49,22 @@ searchBtn.onclick = function () {
 };
 
 const init = () => {
-  // const submitBtn = document.querySelector(".submit-button");
-  // const countryNameField = document.querySelector("#country-field");
-  // const countryOption = document.querySelector("select");
-  // const weatherOptions = document.querySelectorAll(
-  //   'input[name ="weather-options"]:checked',
-  // );
+  const weatherOptionsDropdownBtn = document.querySelector('.dropdown-btn')
+  const weatherDropdownList = document.querySelector('.weather-dropdown-list') 
 
-  // const dateInfo = bodyContent().dateRangePicker("date-range");
 
-  $(function () {
-    $(".weather-options").selectize();
-    //$('.weather-options').select2()
+  weatherOptionsDropdownBtn.onclick = function (event) {
+    event.preventDefault()
+    weatherDropdownList.classList.toggle('active-day')
+  }
+  // $(function () {
+  //   $(".weather-options").selectize();
+  //   //$('.weather-options').select2()
     
-  })
+  // })
   
 
+  //weather
   const content = {
     submitBtn : document.querySelector(".submit-button"),
     countryNameField : document.querySelector("#country-field"),
@@ -76,11 +76,6 @@ const init = () => {
 
   }
   return content
-    // submitBtn,
-    // countryNameField,
-    // countryOption,
-    // dateInfo,
-    // weatherOptions,
   ;
 };
 const json = JSON.parse(

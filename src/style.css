@@ -100,18 +100,73 @@ form {
 }
 
 .form-div input, .form-div select{
-    width: 90%;
+    /* width: 90%; */
 }
 
-.form-div input, .form-div select, .date-div input, #date-range, .weather-options{
+#country-field, .form-div select, .date-div input, #date-range, .weather-options{
     font-size: 1.65rem;
     border-radius: 10px;
     text-align: center;
     padding: 8px;
     background-color:#ffffff ;
 }
+
+.weather-details{
+    position: relative;
+    display: inline-block;
+}
+
+.weather-options-div{
+    /* content: 'Select Weather Options'; */
+    width: 350px;
+    display: flex;
+    background-color:#ffffff;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+.weather-options-div span{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    margin: 5px 2px;
+}
+
+.weather-dropdown-list{
+    margin-top: 2px;
+    display: none; 
+    position: absolute;
+    background-color: #ffffff;
+    border: 0.1px solid black;
+    padding: 5px 8px;
+    border-radius: 1px;
+    width: 250px;
+    
+}
+
+.weather-dropdown-list ul li{
+    display: flex;
+    padding: 2px 5px;
+    gap:3px;
+    align-items: center;
+}
+
+.weather-dropdown-list ul li label{
+    font-size: 1.5rem;
+}
+
+.dropdown-btn{
+    border: 0;
+}
+.active-options{
+    display: inline-block;
+}
 .weather-options{
     width: fit-content;
+    height:fit-content;
+    max-height: 100px;
+    overflow: scroll;
     padding: 8px;
     font-size: 1.20rem;
     text-align: center;
