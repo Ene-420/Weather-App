@@ -114,8 +114,10 @@ export const bodyContent = () => {
       itemCheckbox.setAttribute('type', 'checkbox')
       itemCheckbox.setAttribute('value', item.code)
       itemCheckbox.setAttribute('name', 'weather-options')
+      itemCheckbox.setAttribute("id", item.code);
+      itemLabel.setAttribute('for', item.code)
       itemLabel.textContent = item.option
-      itemLabel.onclick = selectItem
+      //itemLabel.onclick = selectItem
 
       listItem.append(itemCheckbox, itemLabel)
       weatherOptionsList.append(listItem)
