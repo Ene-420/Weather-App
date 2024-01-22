@@ -14,34 +14,22 @@ export const weatherInfo = (info) => {
   const weekdayBtn = document.querySelectorAll(".weekday-btn");
   let dayContentExtra = activeDay.querySelector(".day-content-extra");
   const viewMoreBtn = document.querySelectorAll(".view-more-btn");
-  const after = document.querySelector('.after')
+  const after = document.querySelector(".after");
 
-  // if (viewMoreBtn /*&& dayContentExtra*/) {
-  //   viewMoreBtn.onclick = function () {
-      
-  //     // console.log(dayContentExtra)
-  //     // if (dayContentExtra.style.display.includes('none')) {
-  //     //   dayContentExtra.style.display = 'block'
-  //     // }
-  //   };
-  // }
-
-  viewMoreBtn.forEach(btn => {
-    let active = false
+  viewMoreBtn.forEach((btn) => {
+    let active = false;
     btn.onclick = function () {
       if (!active) {
         dayContentExtra.classList.add("active-extra-content");
-        active = true
-        after.textContent = '-'
-      }
-      else {
+        active = true;
+        after.textContent = "-";
+      } else {
         dayContentExtra.classList.remove("active-extra-content");
         active = false;
         after.textContent = "+";
       }
-      
-    }
-  })
+    };
+  });
   weekdayBtn.forEach((btn) => {
     btn.onclick = function (event) {
       switchActive(event);
@@ -82,13 +70,9 @@ export const weatherInfo = (info) => {
         dayBtn.textContent = `${array[i]}`;
         dayBtn.classList.add("weekday-btn");
         dayBtn.dataset.key = i;
-        // dayBtn.onclick = function (event) {
-        //   switchActive(event);
-        // };
-        //console.day
+
         if (i === 0) {
           dayBtn.classList.add("active");
-          //showWeatherInfo(dayBtn)
         }
         daysDiv.appendChild(dayBtn);
       }
@@ -113,8 +97,6 @@ export const weatherInfo = (info) => {
       active.classList.remove("active");
       event.target.classList.add("active");
       active = event.target;
-      
-      //showWeatherInfo(active)
     }
   }
 
@@ -128,11 +110,8 @@ export const weatherInfo = (info) => {
           activeDay = item;
           dayContentExtra.classList.remove("active-extra-content");
           dayContentExtra = activeDay.querySelector(".day-content-extra");
-
         }
       });
     }
   }
-  
-
 };

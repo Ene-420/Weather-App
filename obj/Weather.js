@@ -4,20 +4,15 @@ export class Weather {
     country,
     startDate,
     endDate,
-    // country,
-    // maxTemp,
-    // minTemp,
-    // avgTemp,
-    // description,
+    weatherDetails
+  
   ) {
     this.city = city;
     this.startDate = startDate;
     this.endDate = endDate;
     this.country = country;
-    // this.maxTemp = maxTemp;
-    // this.minTemp = minTemp;
-    // this.avgTemp = avgTemp;
-    // this.description = description;
+    this.weatherDetails = weatherDetails
+
   }
   getCity() {
     return this.city;
@@ -34,6 +29,9 @@ export class Weather {
     return this.country;
   }
 
+  getWeatherDetails() {
+    return this.weatherDetails;
+  }
   // getMaxTemp() {
   //   return this.maxTemp;
   // }

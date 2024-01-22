@@ -1,7 +1,7 @@
 import { Weather } from "../obj/Weather";
 
 export const WeatherDetails = () => {
-  function buildApiURL(weatherInfo, elements) {
+  function buildApiURL(weatherInfo) {
     let urlEnd = `&include=days&key=GGLYE6F842M6SC4GVHVXRZF4R&contentType=json`;
     let mainUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${weatherInfo.getCity()}%20${weatherInfo.getCountry()}/${weatherInfo.getStartDate()}`;
 
@@ -11,15 +11,15 @@ export const WeatherDetails = () => {
 
     mainUrl += `unitGroup=metric&elements=datetime%2CresolvedAddress%2Ctempmax%2Ctempmin%2Ctemp%2Cicon`;
 
-    let newUrl = elements
-      ? addElements(`${mainUrl}%2`, elements)
+    let newUrl = weatherInfo.getWeatherDetails()
+      ? addElements(`${mainUrl}%2`, weatherInfo.getWeatherDetails())
       : `${mainUrl}&`;
 
     return `${newUrl}${urlEnd}`;
   }
-  async function callWeatherAPI(info, elements) {
+  async function callWeatherAPI(info) {
     try {
-      const url = await buildApiURL(info, elements);
+      const url = await buildApiURL(info);
       //return url;
       const response = await fetch(url);
       if (response.status === 200) return JSON.parse(response);

@@ -16,6 +16,7 @@ export const bodyContent = () => {
     formTextBox.setAttribute("type", "text");
     formTextBox.setAttribute("placeholder", "Enter Location Here");
     formTextBox.setAttribute("id", "country-field");
+    formTextBox.setAttribute('minlength', '3')
     formDiv.appendChild(formTextBox);
     formDiv.appendChild(createCountryDropDown());
     formDiv_2.append(createDates(), createWeatherOptions());
@@ -89,7 +90,8 @@ export const bodyContent = () => {
     dropDownBtn.classList.add('dropdown-btn')
     dropDownBtn.append(btnIcon)
 
-    span.textContent = 'Select Weather Options '
+    //span.textContent = 'Select Weather Options '
+    span.setAttribute('contenteditable', 'true')
     weatherOptions.classList.add('weather-details')
     const weatherOptionsDiv = document.createElement("div");
     weatherOptionsDiv.classList.add("weather-options-div");
@@ -118,6 +120,21 @@ export const bodyContent = () => {
       itemLabel.setAttribute('for', item.code)
       itemLabel.textContent = item.option
       //itemLabel.onclick = selectItem
+      itemCheckbox.onchange = function () {
+        if (itemCheckbox.checked) span.textContent += ` ${itemLabel.textContent},`;
+        else {
+          console.log(span.textContent)
+          console.log(span.textContent.includes(itemLabel.textContent));
+          if (span.textContent.includes(itemLabel.textContent)) {
+            span.textContent = span.textContent.replace(
+              ` ${itemLabel.textContent},`,
+              "",
+            );
+            console.log(content)
+            //init()
+          }
+        }
+      }
 
       listItem.append(itemCheckbox, itemLabel)
       weatherOptionsList.append(listItem)

@@ -9,6 +9,7 @@ import { daysOfWeek } from "../function/daysOfWeek";
 import { landingPage, weatherPage } from "../loader/load";
 import selectize from "@selectize/selectize";
 import chosen from "chosen-js";
+import { caller } from "../function/caller";
 
 const body = document.querySelector("body");
 
@@ -34,67 +35,67 @@ searchBtn.onclick = function () {
   //countryNameField.value = location ? location : "";
 
   submitBtn.onclick = function (event) {
+    const weatherOptions= document.querySelectorAll(
+      'input[name ="weather-options"]:checked',
+    );
+
     event.preventDefault();
+    //console.log(weatherOptions)
     let weatherValues = [];
-    let dateValues = [];
-
-    dateValues.push(dateInfo.getStartDate().format("YYYY-MM-DD"));
-    dateValues.push(dateInfo.getEndDate().format("YYYY-MM-DD"));
-
     weatherOptions.forEach((item) => {
       weatherValues.push(item.value);
     });
-    console.log(countryNameField.value);
-    console.log(countryOption.value);
-    console.log(dateValues);
-    console.log(weatherValues);
+  
+    let weatherCaller = new Weather(
+      countryNameField.value,
+      countryOption.value,
+      dateInfo.getStartDate().format("YYYY-MM-DD"),
+      dateInfo.getEndDate().format("YYYY-MM-DD"),weatherValues
+    );
+      caller(weatherCaller)
 
-    weatherInfo(json);
+    //weatherInfo(json);
   };
 };
 
 const init = () => {
-  const weatherOptionsSpan = document.querySelector(
-    ".weather-options-div>span",
-  );
-  const weatherOptions = document.querySelectorAll(
-    'input[name= "weather-options"] ',
-  );
+  // const weatherOptionsSpan = document.querySelector(
+  //   ".weather-options-div>span",
+  // );
+  // const weatherOptions = document.querySelectorAll(
+  //   'input[name= "weather-options"] ',
+  // );
   const weatherOptionsDropdownBtn = document.querySelector(".dropdown-btn");
   const weatherDropdownList = document.querySelector(".weather-dropdown-list");
 
-  weatherOptions.forEach((item) => {
-    item.onchange = function () {
-      const label = item.nextElementSibling;
-      if (item.checked) {
-        weatherOptionsSpan.textContent += ` ${label.textContent},`;
-        //init()
-      } else {
-        if (weatherOptionsSpan.textContent.includes(label.textContent)) {
-          weatherOptionsSpan.textContent.replace(label.textContent, "");
-          //init()
-        }
-      }
-    };
-  });
+  // /*
+  // weatherOptions.forEach((item) => {
+  //   item.onchange = function () {
+  //     const label = item.nextElementSibling;
+  //     if (item.checked) {
+  //       weatherOptionsSpan.textContent += ` ${label.textContent},`;
+  //       //init()
+  //     } else {
+  //       if (weatherOptionsSpan.textContent.includes(label.textContent)) {
+  //         weatherOptionsSpan.textContent.replace(label.textContent, "");
+  //         //init()
+  //       }
+  //     }
+  //   };
+  // });
+  // */
   weatherOptionsDropdownBtn.onclick = function (event) {
     event.preventDefault();
     weatherDropdownList.classList.toggle("active-day");
   };
-  // $(function () {
-  //   $(".weather-options").selectize();
-  //   //$('.weather-options').select2()
-
-  // })
-
-  //weather
+ 
   const content = {
     submitBtn: document.querySelector(".submit-button"),
     countryNameField: document.querySelector("#country-field"),
     countryOption: document.querySelector("select"),
-    weatherOptions: document.querySelectorAll(
-      'input[name ="weather-options"]:checked',
-    ),
+    // weatherOptions: weatherOptions.querySelectorAll(
+    //   'input[name ="weather-options"]:checked',
+    // ),
     dateInfo: bodyContent().dateRangePicker("date-range"),
   };
   return content;
